@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-container button {
+            width: 48%;
+        }
+        
+.social-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-login p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 30px;
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-account a {
+    color: #00aaff;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+
+<div class="signup-container">
+    <h2>Create Account</h2>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+    <input type="password" id="password" placeholder="Create Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    <div class="btn-container">
+        <button onclick="signup()">Create Account</button>
+        <button onclick="goToLogin()">Sign In</button>
+    </div>
+    <p id="signupError" style="color: red; text-align: center;"></p>
+    <div class="social-login">
+        <div class="social-icons">
+            <a href="#"><img src="img/Google.png" alt="Google"></a>
+            <a href="#"><img src="img/Facebook.jpeg" alt="Facebook"></a>
+            <a href="#"><img src="img/Twitter.png" alt="Twitter"></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function signup() {
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Passwords matching check
+        if (password !== confirmPassword) {
+            document.getElementById('signupError').innerText = 'Passwords do not match!';
+            return;
+        }
+
+        // Save user data to local storage
+        const userData = { name, email, password };
+        localStorage.setItem('user', JSON.stringify(userData));
+        alert('Account created successfully!');
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+
+    function goToLogin() {
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+</script>
+
+</body>
+</html>

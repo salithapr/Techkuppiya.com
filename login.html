@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+        button:hover {
+    background-color: #0056cc;
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social-login p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 30px;
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-account a {
+    color: #00aaff;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Sign In</h2>
+    <input type="email" id="loginEmail" placeholder="Your Email" required>
+    <input type="password" id="loginPassword" placeholder="Your Password" required>
+    <button onclick="login()">Sign In</button>
+    <p id="loginError" class="error"></p>
+<div class="social-login">
+    <div class="social-icons">
+        <a href="#"><img src="img/Google.png" alt="Google"></a>
+        <a href="#"><img src="img/Facebook.jpeg" alt="Facebook"></a>
+        <a href="#"><img src="img/Twitter.png" alt="Twitter"></a>
+    </div>
+</div>
+<div class="create-account">
+    <p>Don't have an account? <a href="signup.html">Create Account</a></p>
+</div>
+</div>
+
+<script>
+    function login() {
+        const loginEmail = document.getElementById('loginEmail').value;
+        const loginPassword = document.getElementById('loginPassword').value;
+
+        // Retrieve user data from local storage
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+
+        // Validate user credentials
+        if (storedUser && storedUser.email === loginEmail && storedUser.password === loginPassword) {
+            alert('Login successful!');
+            window.location.href = 'index.html'; // Redirect to desired page after successful login
+        } else {
+            document.getElementById('loginError').innerText = 'Invalid email or password.';
+        }
+    }
+</script>
+
+</body>
+</html>
